@@ -30,106 +30,11 @@ const contractTemplates = {
         { name: 'ERC20SymbolBytes', file: './abis/ERC20SymbolBytes.json' },
         { name: 'ERC20NameBytes', file: './abis/ERC20NameBytes.json' },
         { name: 'PoolManager', file: './abis/PoolManager.json' },
-        { name: 'AggregatorHook', file: './abis/AggregatorHook.json' },
       ],
       eventHandlers: [
         {
           event: 'Initialize(indexed bytes32,indexed address,indexed address,uint24,int24,address,uint160,int24)',
           handler: 'handleInitialize',
-        },
-        {
-          event: 'ModifyLiquidity(indexed bytes32,indexed address,int24,int24,int256,bytes32)',
-          handler: 'handleModifyLiquidity',
-        },
-        {
-          event: 'Swap(indexed bytes32,indexed address,int128,int128,uint160,uint128,int24,uint24)',
-          handler: 'handleSwap',
-        },
-      ],
-    },
-  },
-  PositionManager: {
-    kind: 'ethereum/contract',
-    mapping: {
-      kind: 'ethereum/events',
-      apiVersion: '0.0.7',
-      language: 'wasm/assemblyscript',
-      file: './src/mappings/positionManager.mapping.ts',
-      entities: ['Position'],
-      abis: [{ name: 'PositionManager', file: './abis/PositionManager.json' }],
-      eventHandlers: [
-        {
-          event: 'Subscription(indexed uint256,indexed address)',
-          handler: 'handleSubscription',
-        },
-        {
-          event: 'Unsubscription(indexed uint256,indexed address)',
-          handler: 'handleUnsubscription',
-        },
-        {
-          event: 'Transfer(indexed address,indexed address,indexed uint256)',
-          handler: 'handleTransfer',
-        },
-      ],
-    },
-  },
-  EulerSwapFactory: {
-    kind: 'ethereum/contract',
-    mapping: {
-      kind: 'ethereum/events',
-      apiVersion: '0.0.7',
-      language: 'wasm/assemblyscript',
-      file: './src/mappings/euler.mapping.ts',
-      entities: ['Position'],
-      abis: [{ name: 'EulerSwapFactory', file: './abis/EulerSwapFactory.json' }],
-      eventHandlers: [
-        {
-          event: 'PoolDeployed(indexed address,indexed address,indexed address,address)',
-          handler: 'handleHookDeployed',
-        },
-        {
-          event: 'PoolUninstalled(indexed address,indexed address,indexed address,address)',
-          handler: 'handleHookUninstalled',
-        },
-      ],
-    },
-  },
-  ArrakisHookFactory: {
-    kind: 'ethereum/contract',
-    mapping: {
-      kind: 'ethereum/events',
-      apiVersion: '0.0.7',
-      language: 'wasm/assemblyscript',
-      file: './src/mappings/arrakis.mapping.ts',
-      entities: ['ArrakisHook'],
-      abis: [{ name: 'ArrakisHookFactory', file: './abis/ArrakisHookFactory.json' }],
-      eventHandlers: [
-        {
-          event: 'LogCreatePrivateHook(indexed address,indexed address,bytes32)',
-          handler: 'handleArrakisHookDeployed',
-        },
-      ],
-    },
-  },
-  AggregatorHook: {
-    kind: 'ethereum/contract',
-    mapping: {
-      kind: 'ethereum/events',
-      apiVersion: '0.0.7',
-      language: 'wasm/assemblyscript',
-      file: './src/mappings/poolManager.mapping.ts',
-      entities: ['Pool', 'Token'],
-      abis: [
-        { name: 'ERC20', file: './abis/ERC20.json' },
-        { name: 'ERC20SymbolBytes', file: './abis/ERC20SymbolBytes.json' },
-        { name: 'ERC20NameBytes', file: './abis/ERC20NameBytes.json' },
-        { name: 'PoolManager', file: './abis/PoolManager.json' },
-        { name: 'AggregatorHook', file: './abis/AggregatorHook.json' },
-      ],
-      eventHandlers: [
-        {
-          event: 'HookSwap(indexed bytes32,indexed address,int256,int256,uint24)',
-          handler: 'handleHookSwap',
         },
       ],
     },

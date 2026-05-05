@@ -3,10 +3,14 @@ import { Address, BigInt } from '@graphprotocol/graph-ts'
 import { ERC20 } from '../types/PoolManager/ERC20'
 import { ERC20NameBytes } from '../types/PoolManager/ERC20NameBytes'
 import { ERC20SymbolBytes } from '../types/PoolManager/ERC20SymbolBytes'
-import { ADDRESS_ZERO, ZERO_BI } from './constants'
-import { isNullEthValue } from './index'
 import { NativeTokenDetails } from './nativeTokenDetails'
 import { getStaticDefinition, StaticTokenDefinition } from './staticTokenDefinition'
+
+const ADDRESS_ZERO = '0x0000000000000000000000000000000000000000'
+
+function isNullEthValue(value: string): boolean {
+  return value == '0x0000000000000000000000000000000000000000000000000000000000000000'
+}
 
 export function fetchTokenSymbol(
   tokenAddress: Address,
@@ -80,7 +84,7 @@ export function fetchTokenName(
 
 export function fetchTokenTotalSupply(tokenAddress: Address): BigInt {
   if (tokenAddress.equals(Address.fromString(ADDRESS_ZERO))) {
-    return ZERO_BI
+    return BigInt.zero()
   }
   const contract = ERC20.bind(tokenAddress)
   let totalSupplyValue = BigInt.zero()
